@@ -1,0 +1,753 @@
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<body style="margin:10" onload="Startup()" >
+ 
+ <!-- getting into modal(window) from button press -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myToaster">Toaster</button>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myMicrowave">Microwave</button>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myTelevision">Television</button>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myComputer">Computer</button>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myCoffee_Maker">Coffee Maker</button>
+
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myWasher">Washer</button>
+
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myDish_Washer">Dish Washer</button>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myDryer">Dryer</button>
+
+   <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myBattery">Battery</button> -->
+
+  <button onclick="Statistics()">Statistics</button>
+
+  <!-- The actual modal NOTE modal fade fades the background, data-toggle means its modal and data-target is telling it to look at ids
+
+modal-dialog sets the proper width and margin
+
+&times; refers to the x in the corner to close a menu these modals handle each of the individual appliances-->
+  <div id="myToaster" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Toaster</h4>
+        </div>
+        <div class="modal-body">
+          <p id="Toaster_Price"></p>   <!--  -->
+          <p id="Toaster_status">The Toaster is Currently off</p>
+          <p id="Toaster_Time_Left">0</p>		  
+          <button class="btn btn-primary" type="button" id="Toaster" value="Toaster" onclick="Static_Menu_Actions('Toaster', 3);" name="Turn on">Turn on</button>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  
+    <!-- MICROWAVE -->
+
+    <div id="myMicrowave" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Microwave</h4>
+        </div>
+        <div class="modal-body">
+          <p id="Microwave_Price"></p>
+          <p id="Microwave_status">The Microwave is Currently off</p>
+          <p id="Microwave_Time_Left">0</p>		  
+          <button class="btn btn-primary" type="button" id="Microwave" value="Microwave" onclick="Static_Menu_Actions('Microwave', 5);" name="Turn on">Turn on</button>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  
+  <!-- COFFEE MAKER -->
+
+  <div id="myCoffee_Maker" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Coffee Maker</h4>
+        </div>
+        <div class="modal-body">
+          <p id="Coffee_Maker_Price"></p>
+          <p id="Coffee_Maker_status">The Coffee Maker is Currently off</p>
+          <p id="Coffee_Maker_Time_Left">0</p>	
+          <button class="btn btn-primary" type="button" id="Coffee_Maker" value="Coffee_Maker" onclick="Static_Menu_Actions('Coffee_Maker',8);" name="Turn on">Turn on</button>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  
+   <!-- Television --> 
+    <div id="myTelevision" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Television</h4>
+        </div>
+        <div class="modal-body">
+          <p id="Television_Price"></p>
+          <p id="Television_status">The Television is Currently off</p>
+          <button class="btn btn-primary" type="button" id="Television" value="Television" onclick="Static_Menu_Actions('Television',0);" name="Turn on">Turn on</button>
+          <button class="btn btn-primary" type="button" id="Television2" value="Television" onclick="stop_appliance('Television');" name="Turn on">Turn off</button>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  
+  
+    <!-- Computer -->
+      <div id="myComputer" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Computer</h4>
+        </div>
+        <div class="modal-body">
+          <p id="Computer_Price"></p>
+          <p id="Computer_status">The Computer is Currently off</p>
+          <button class="btn btn-primary" type="button" id="Computer" value="Computer" onclick="Static_Menu_Actions('Computer', 0);" name="Turn on">Turn on</button>
+          <button class="btn btn-primary" type="button" id="Computer2" value="Computer" onclick="stop_appliance('Computer');" name="Turn on">Turn off</button>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!------------------------------------------------------->
+  <div id="myWasher" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Washer</h4>
+        </div>
+        <div class="modal-body">
+          <p id="Washer_Price"></p>
+          <p id="Washer_status">The Washer is Currently off</p>
+          <p id="Washer_Time_Left">0</p>	
+		  <div class="container">	
+			<p id="Washer_Time">Please select a time</p>		  
+			<form role="form">
+				<div class="radio-inline">
+				<label><input type="radio" name="optradio" value= "15" id = "Washer_1" >15</label>
+					</div>
+					<div class="radio-inline">
+					<label><input type="radio" name="optradio"id = "Washer_2" value= "30">30</label>
+					</div>
+					<div class="radio-inline ">
+				<label><input type="radio" name="optradio" id = "Washer_3" value= "45">45</label>
+				</div>
+				</form>
+					</div>
+
+          <button class="btn btn-primary" type="button" id="Washer" value="Washer" onclick="Variable_Menu_Actions('Washer');" name="Turn on">Turn on</button>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  
+  
+  
+  
+  
+  <!------------------------------------------------------->
+  <div id="myDish_Washer" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Dish Washer</h4>
+        </div>
+        <div class="modal-body">
+          <p id="Dish_Washer_Price"></p>
+          <p id="Dish_Washer_status">The Dish Washer is Currently off</p>
+          <p id="Dish_Washer_Time_Left">0</p>	
+		  <div class="container">	
+			<p id="Dish_Washer_Time">Please select a time</p>		  
+			<form role="form">
+				<div class="radio-inline">
+				<label><input type="radio" name="optradio" value= "15" id = "Dish_Washer_1" >15</label>
+					</div>
+					<div class="radio-inline">
+					<label><input type="radio" name="optradio"id = "Dish_Washer_2" value= "30">30</label>
+					</div>
+					<div class="radio-inline ">
+				<label><input type="radio" name="optradio" id = "Dish_Washer_3" value= "45">45</label>
+				</div>
+				</form>
+					</div>
+
+          <button class="btn btn-primary" type="button" id="Dish_Washer" value="Dish_Washer" onclick="Variable_Menu_Actions('Dish_Washer');" name="Turn on">Turn on</button>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  <!------------------------------------------------------->
+  <div id="myDryer" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Dryer</h4>
+        </div>
+        <div class="modal-body">
+          <p id="Dryer_Price"></p>
+          <p id="Dryer_status">The Dryer is Currently off</p>
+          <p id="Dryer_Time_Left">0</p>			  
+		  <div class="container">	
+			<p id="Dish_Washer_Time">Please select a time</p>		  
+			<form role="form">
+				<div class="radio-inline">
+				<label><input type="radio" name="optradio" value= "15" id = "Dryer_1" >15</label>
+					</div>
+					<div class="radio-inline">
+					<label><input type="radio" name="optradio"id = "Dryer_2" value= "30">30</label>
+					</div>
+					<div class="radio-inline ">
+				<label><input type="radio" name="optradio" id = "Dryer_3" value= "45">45</label>
+				</div>
+				</form>
+					</div>
+		
+          <button class="btn btn-primary" type="button" id="Dryer" value="Dryer" onclick="Variable_Menu_Actions('Dryer');" name="Turn on">Turn on</button>
+
+     	     </div>	
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+		
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+  <!---------------BATTERY------------
+  
+		This could be implemented in the future, but it's current design is not opperational
+  
+  <div id="myBattery" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Battery</h4>
+        </div>
+        <div class="modal-body">
+          <p id="Battery_Function">The Battery's Mode is: Charging</p>
+          <p id="Battery_status">The Battery is Currently Off</p>
+          <p id="Battery_Storage_menu">Battery Storage: 0</p>
+          <p id="Battery_Empty">You do not have enough power to Discharge</p>
+          <button class="btn btn-primary" type="button" id="Battery" value="Battery" onclick="Menu_Actions('Battery');" name="Turn on">Turn on</button>
+          <button class="btn btn-primary" type="button" id="Battery_Charge" value="Battery" onclick="Battery_Charges();" name="Turn on">Discharge</button>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+-->
+
+
+  <!-- Modal for messages, these will delete the message sent once the player clicks out of them -->
+  <div id="myMessage" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Message</h4>
+        </div>
+        <div class="modal-body">
+         
+          <p id="new_message"></p>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  
+  
+
+  
+  <p id="time"></p>
+  <p id="Toaster_mode">The Toaster is Currently Off</p>
+  <p id="Coffee_Maker_mode">The Coffee Maker is Currently Off</p>
+  <p id="Washer_mode">The Washer is Currently Off</p>
+   <p id="Computer_mode">The Computer is Currently Off</p>
+  <p id="Dish_Washer_mode">The Dish Washer is Currently Off</p>
+  <p id="Dryer_mode">The Dryer is Currently Off</p>
+  <p id="Television_mode">The Television is Currently Off</p>
+
+  <p id="Current_Money">Money Left: $0</p>
+  <p id="Total_load">Your total load is 0.00</p>
+ 
+
+  <p></p>
+	<meter value="" min = "0" max = "200" id = "happ_meter"></meter><br>
+	<p>Happiness</p>
+  <div id="console-log">
+
+  <button onclick="Log_Off()">Log Off</button>
+  </div>
+
+  <script>
+  
+  //code for modal to be used. This may not be the most efficient, it was the best way I knew to make the modal appear without a button price
+$(document).ready(function(){
+		check_messages();
+		$("#myMessage").on('hide.bs.modal', function () {
+            remove_message();
+    });
+});
+
+var value; //global variable (might night be needed but in the moment it was needed)
+
+
+//variables for timekeeping within client
+var currentTime = new Date()
+var hours = currentTime.getHours()
+var minutes = currentTime.getMinutes()
+
+//code to show clock updating in real time
+var Clock = setInterval(function () {
+    myTimer()
+}, 1000);
+function myTimer() {
+    var d = new Date();
+    var t = d.toLocaleTimeString();
+    document.getElementById("time").innerHTML = t;
+}
+var now_minute = setInterval(function () {
+    change_time()
+}, 1000);
+var new_minute;
+
+
+//changing time on the fly using new_minute and new_minute. This is where things will get updates on the minute.
+function change_time() {
+    var now = new Date();
+
+    if (new_minute != now.getMinutes()) {
+		check_appliance();  //check status of each appliance
+		check_messages();  //check for any messages sent by the server
+		check_money();    //update the total money left
+    }
+    new_minute = now.getMinutes();
+}
+
+
+//makes a call to update money
+function check_money (){
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function(){
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+				document.getElementById("Current_Money").innerHTML = "Money Left: $" +xmlhttp.responseText ;
+					}
+			}
+			xmlhttp.open ("GET", "money.php", true);
+			xmlhttp.send();
+}
+
+//Interactions with the menus for each appliance, these are run during startup based on the information from the database
+var Load_Actions = function (Appliance) {
+    var Title = Appliance.replace("_"," ");
+  	if (document.getElementById(Appliance).textContent == "Running") {
+
+		document.getElementById(Appliance).textContent = "Turn On";
+        document.getElementById(Appliance + '_status').textContent = "The " + Title + " is Currently Off";
+        document.getElementById(Appliance + '_mode').textContent = "The " + Title + " is Currently Off";
+
+      
+    } else {
+        document.getElementById(Appliance).textContent = "Running";
+        document.getElementById(Appliance + '_status').textContent = "The " + Title + " is Currently Running";
+        document.getElementById(Appliance + '_mode').textContent = "The " + Title + " is Currently Running";
+
+
+    }
+}
+var Menu_Actions = function (Appliance) {
+    var Title = Appliance.replace("_"," ");
+  	if (document.getElementById(Appliance).textContent == "Running") {
+
+		document.getElementById(Appliance).textContent = "Turn On";
+        document.getElementById(Appliance + '_status').textContent = "The " + Title + " is Currently Off";
+        document.getElementById(Appliance + '_mode').textContent = "The " + Title + " is Currently Off";
+		call_start(Appliance);
+      
+    } else {
+        document.getElementById(Appliance).textContent = "Running";
+        document.getElementById(Appliance + '_status').textContent = "The " + Title + " is Currently Running";
+        document.getElementById(Appliance + '_mode').textContent = "The " + Title + " is Currently Running";
+		call_stop(Appliance);
+
+    }
+}
+
+var Variable_Menu_Actions = function (Appliance) { //Varibale Menu actions set tiem constraints based on the user specified time
+    var Title = Appliance.replace("_"," ");
+	if (document.getElementById(Appliance).textContent == "Running") {      
+    } else {
+	if (document.getElementById( Appliance + '_1').checked == true){
+		document.getElementById(Appliance + '_mode').textContent = "Time for " + Title + ": 15";
+		variable_call_start(Appliance, 15);
+		        document.getElementById(Appliance).textContent = "Running";
+        document.getElementById(Appliance + '_status').textContent = "The " + Title + " is Running";
+        document.getElementById(Appliance + '_mode').textContent = "The " + Title + " is Running";
+	} 	else if (document.getElementById( Appliance + '_2').checked == true){
+		document.getElementById(Appliance + '_mode').textContent = "Time for " + Title + ": 30";
+		variable_call_start(Appliance, 30);	
+		        document.getElementById(Appliance).textContent = "Running";
+        document.getElementById(Appliance + '_status').textContent = "The " + Title + " is Running";
+        document.getElementById(Appliance + '_mode').textContent = "The " + Title + " is Running";
+	} 	else if (document.getElementById( Appliance + '_3').checked == true){
+		document.getElementById(Appliance + '_mode').textContent = "Time for " + Title + ": 45";
+		variable_call_start(Appliance, 45);	
+		        document.getElementById(Appliance).textContent = "Running";
+        document.getElementById(Appliance + '_status').textContent = "The " + Title + " is Running";
+        document.getElementById(Appliance + '_mode').textContent = "The " + Title + " is Running";
+	
+		} 	else{
+		document.getElementById(Appliance + '_mode').textContent = "NOTHING";
+	} 
+	}
+	total_power();
+	time_left(Appliance);
+	}
+
+	
+	//used for appliances that have a single timing, usually reserved for smaller length appliances that are not worth turning off
+var Static_Menu_Actions = function (Appliance, time) { //These menu actions are small and are forced into their timed actions and cannot be stopped
+    var Title = Appliance.replace("_"," ");
+  	if (document.getElementById(Appliance).textContent == "Running") {
+      
+    } else {
+        document.getElementById(Appliance).textContent = "Running";
+        document.getElementById(Appliance + '_status').textContent = "The " + Title + " is Currently Running";
+        document.getElementById(Appliance + '_mode').textContent = "The " + Title + " is Currently Running";
+        variable_call_start(Appliance, time);
+
+    }
+ 		total_power();  	
+		time_left(Appliance);
+}
+
+
+//sets a total price that is going to continue to increment 
+//function update_price() {
+//		total_price += total_load * time_price();
+ //   document.getElementById('Total_price').textContent = "You have spent $" + total_price;
+    
+//}
+
+//Every time an appliance is turned on or off, then the total load will recalculate 
+function Log_Off(){
+	 Stop_Session();
+	 window.location.assign("index.html")
+}
+
+
+//change page to the graph
+function Statistics(){
+	 window.location.assign("setgraph.php")
+}
+function call_stop (Appliance){ //stop an appliance
+    var Title = Appliance.replace("_"," ");
+
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function(){
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+					}
+			}
+			xmlhttp.open ("GET", "stop.php?q=" + Appliance, true);
+			xmlhttp.send();
+        document.getElementById(Appliance + '_status').textContent = "The " + Title + " is Currently Off";
+        document.getElementById(Appliance + '_mode').textContent = "The " + Title + " is Currently Off";
+
+}
+
+function call_start (Appliance){ //starts appliances that are not time dependant, such as computer or television
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function(){
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+					}
+			}
+			xmlhttp.open ("GET", "start.php?q=" + Appliance, true);
+			xmlhttp.send();
+			time_left(Appliance);
+}
+function variable_call_start (Appliance, time){  //start an appliance with a specified length of time
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function(){
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+					}
+			}
+			xmlhttp.open ("GET", "start.php?q=" + Appliance + "&p=" + time, true);
+			xmlhttp.send();
+			time_left(Appliance);
+}
+function Start_Session(){ //starts session variables to be used between php scripts.
+
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function(){
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+				document.getElementById("INFO_PHP").innerHTML = xmlhttp.responseText;
+					}
+			}
+			xmlhttp.open ("GET", "start_session.php", true);
+			xmlhttp.send();			
+
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function(){
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+				document.getElementById("INFO_PHP").innerHTML = xmlhttp.responseText;
+					}
+			}
+			xmlhttp.open ("GET", "get_name.php", true);
+		xmlhttp.send();	
+		Display_Happiness();
+}
+function  Stop_Session(){ //ends a session
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.open ("GET", "close_session.php", true);
+			xmlhttp.send();
+}
+
+function Display_Happiness(){ //displays the happiness of the user
+		var happiness
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function(){
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+				//happiness = xmlhttp.responseText;
+				document.getElementById("happ_meter").value = xmlhttp.responseText;
+					}
+			}
+			xmlhttp.open ("GET", "happiness.php", true);
+			xmlhttp.send();			
+}
+function Startup(){ //created to handle setup when the page loads
+	Start_Session();
+	Check_Status("Coffee_Maker");
+	Check_Status("Toaster");
+	Check_Status("Washer");
+	Check_Status("Dish_Washer");
+	Check_Status("Dryer");
+	Check_Status("Television");
+	Check_Status("Computer");
+	Check_Status("Microwave");
+	total_power();
+	myTimer();
+	Display_Happiness();
+	check_money();	
+
+}
+
+
+function Check_Status(Appliance){ //checks the load for a given appliance
+		var Response;
+		var STATUS = Appliance;
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function(){
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+				if (xmlhttp.responseText == 1){
+					Load_Actions(Appliance);
+				}
+			}
+			}
+			xmlhttp.open ("GET", "load.php?q=" + STATUS, true);
+			xmlhttp.send();
+		time_left(Appliance);
+
+}
+
+function check_appliance(Appliance) { //checks just the status
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function(){
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+					}
+			}
+			xmlhttp.open ("GET", "load.php?q=" + Appliance, true);
+			xmlhttp.send();			
+	
+}
+function time_left(Appliance){ //checks how much time is left on an appliance
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function(){
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+				document.getElementById(Appliance + "_Time_Left").innerHTML = "Time Left:" + xmlhttp.responseText + "minutes";
+					}
+			}
+			xmlhttp.open ("GET", "time_left.php?q=" + Appliance, true);
+			xmlhttp.send();
+}
+
+
+
+function get_power(Appliance){ //based on an appliance's status, checks and outputs its power
+
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function(){
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+				value = Number(xmlhttp.responseText);				
+				}
+			}
+			
+			xmlhttp.open ("GET", "total_power.php?q=" + Appliance, false);
+			xmlhttp.send();	
+			return value;			
+
+
+
+		
+		
+}
+function total_power(){ //looks at all appliances and and adds their totals
+		var Coff = get_power("Coffee_Maker");
+		var Comp = get_power("Computer");
+		var Dish = get_power("Dish_Washer");
+		var Dry = get_power("Dryer");
+		var Micro = get_power ("Microwave");
+		var Tele = get_power ("Television");
+		var Toast = get_power("Toaster");
+		var Wa = get_power ("Washer");
+//		var Wa_He = get_power("Water_Heater");
+//		var Frig = get_power ("Fridge");
+//		var Lie = get_power ("Lights");
+//		var Sto = get_power ("Stove");
+
+		var tot_power = Coff + Comp + Dish + Dry+ Micro +  Tele + Toast + Wa;
+		document.getElementById("Total_load").innerHTML  = "Your total load is: " + tot_power;	
+		call_power(tot_power);
+		
+}
+function call_power(tot_power){ //checks power
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function(){
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+				document.getElementById("TEST").innerHTML = tot_power;
+					}
+			}
+			xmlhttp.open ("GET", "power.php?q=" + tot_power, true);
+			xmlhttp.send()		
+
+}
+//
+function check_messages(){ //checks for any updated message from the database
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function(){
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+				if(xmlhttp.responseText != ""){
+					document.getElementById("new_message").innerHTML = xmlhttp.responseText;
+					$("#myMessage").modal("show");
+					}
+				}
+			}
+			xmlhttp.open ("GET", "messages.php", true);
+			xmlhttp.send();
+		
+
+}
+
+
+function remove_message(){  //removes the message from the database to make room for a new message
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function(){
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+				}
+			}
+			xmlhttp.open ("GET", "remove_message.php", true);
+			xmlhttp.send();
+		
+}
+
+//stops appliances that aren't time dependant
+function stop_appliance(Appliance){
+var Title = Appliance.replace("_"," ");
+	if (document.getElementById(Appliance).textContent == "Running") {      
+		document.getElementById(Appliance).textContent = "Turn On";
+		call_stop(Appliance);
+	}
+}
+
+
+  </script>
+
+</body>

@@ -1,0 +1,140 @@
+<html>
+<body style="margin:10">
+	<style>
+	label{
+    	display:inline-block;
+    	width:120px;
+	}
+	</style>
+
+<h1>Register New User:</h1>
+<!-- small survey along with fields for username and password -->
+<form id = "start_form" >
+<label>Username:</label> <input type="text" name="username" id = "username5" /><br><br>
+<label>Password:</label> <input type="password" name="password1" id = "password5" /><br><br>
+<label>Password(Verify):</label> <input type="password" name="password2" id = "password6" /><br><br>
+How many people are covered by your utility bill? <br><input type="number" name="question1" id = "q1" /><br><br>
+How many rooms are in your house/apartment? <br><input type="number" name="question2" id = "q2" /><br><br>
+About how many square feet is your house/apartment? <br><input type="number" name="question3" id = "q3" /><br><br>
+</form>
+<button  type='submit' onclick="Register()" >Submit</button>
+<button  type="button" onclick="Move_Login()" >Go Back</button>
+
+<p id = "message"></p>
+<script>
+
+function Setup(){
+Register();
+
+}
+
+//verifies fields are allowable and creates an account
+function Register(){
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function(){
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+				 if (xmlhttp.responseText == 1){
+		 			Default_Start();
+					Stop_Session();
+					document.getElementById("message").innerHTML = "Registration Successful, you will be redirected to the Login Page";
+					setTimeout(Move_Login, 2000);
+				 }
+				 else{
+				document.getElementById("message").innerHTML = xmlhttp.responseText;
+					
+				 }
+			}
+		}
+			xmlhttp.open ("GET", "registration.php?username=" + document.getElementById("username5").value + "&password1=" + document.getElementById("password5").value + "&password2=" + document.getElementById("password6").value + "&question1=" + document.getElementById("q1").value + "&question2=" + document.getElementById("q2").value + "&question3=" + document.getElementById("q3").value , true);
+			xmlhttp.send();	
+			
+
+}
+//proceeds to main page
+function Move_Login(){
+					window.location.assign("index.html")
+
+}
+
+//clears session
+function Clear_Session(){
+		var xmlhttp = new XMLHttpRequest();
+			xmlhttp.open ("GET", "close_session.php" , true);
+			xmlhttp.send();	
+		
+
+
+}
+
+//handles the database to establish an entry into each table to be used by the game
+function Default_Start(){
+
+	call_start("Coffee_Maker");
+	call_start("Computer")
+	call_start("Dish_Washer");
+	call_start("Dryer");
+	call_start("Fridge");
+	call_start("Lights");
+	call_start("Microwave");
+	call_start("Stove");
+	call_start("Television");
+	call_start("Toaster");
+	call_start("Washer");
+	call_start("Water_Heater");
+	default_message();
+
+
+	
+}
+
+//start call for registration
+function call_start (Appliance){
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function(){
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+					}
+			}
+			xmlhttp.open ("GET", "registration_defaults.php?q=" + Appliance, true);
+			xmlhttp.send();
+}
+
+//stop call for appliance
+function call_stop (Appliance){
+		var xmlhttp	= new XMLHttpRequest();
+			xmlhttp.open ("GET", "stop.php?q=" + Appliance, true);
+			xmlhttp.send();	
+		
+}
+
+
+//logs in
+function login(){
+		var varified;
+		var xmlhttp = new XMLHttpRequest();
+			xmlhttp.open ("GET", "login.php?username=" + document.getElementById("username5").value + "&password=" + document.getElementById("password5").value , true);
+			xmlhttp.send();	
+		
+		return false;
+}
+
+
+function default_message(){
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function(){
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+					
+			}
+		}
+			xmlhttp.open ("GET", "message_default.php" , true);
+			xmlhttp.send();
+}
+
+//ends session
+function  Stop_Session(){
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.open ("GET", "close_session.php", true);
+			xmlhttp.send();
+}
+</script>
+</body>
+</html>

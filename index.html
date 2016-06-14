@@ -1,0 +1,52 @@
+<html>
+<body>
+
+	<style>
+	label{
+    	display:inline-block;
+    	width:75px;
+	}
+	</style>
+
+<h1>User Login:</h1>
+<form id = "start_form" >
+<label>Username:</label> <input type="text" name="username" id = "username5" /><br><br>
+<label>Password:</label> <input type="password" name="password1" id = "password5" /><br><br>
+<input type="submit" onclick="return login()" /><br></form>
+<button onclick= "Change_Page()"> Not A Registered User? Click Here!</button>
+<p id = "STATUS"></p>
+
+<script>
+function login(){ //verifies the username and passwords, if the combination is for an admin login then the page redirects to admin.php, otherwise progresses to the game
+		var varified;
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function(){
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+				if (xmlhttp.responseText == 1){
+					if((document.getElementById("username5").value == "admin") && (document.getElementById("password5").value == "password")) {
+					window.location.assign("admin.php")
+					}
+					else{
+					window.location.assign("client.html")					
+					}
+				
+				
+				
+				}
+			}
+		}
+			xmlhttp.open ("GET", "login.php?username=" + document.getElementById("username5").value + "&password=" + document.getElementById("password5").value , true);
+			xmlhttp.send();	
+		
+		return false;
+}
+
+//moves to registration
+function Change_Page(){
+window.location.assign("registration.html")
+}
+
+
+</script>
+</body>
+</html>
